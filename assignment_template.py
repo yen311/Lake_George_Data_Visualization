@@ -6,7 +6,7 @@ Author: <your university ID here>
 import csv
 import matplotlib.pyplot as plt
 import math
-import numpy as np
+
 
 from assignment_helpers import plot_volumes
 
@@ -170,11 +170,12 @@ def area_vs_volume(data):
 
 def lake_george_simple_model(data, evaporation_rate):
     volume = [line[1] for line in data]
-    catchment_area = largest_area(data)
+    catchment_area = 950000000 * 0.16
     surface_area = largest_area(data)
     rainfall = [line[4] for line in data]
     start_point = volume[0]
     model_volume = [start_point]
+
     for element in range(1, len(rainfall)):
         if model_volume[element - 1] + (rainfall[element] * catchment_area) - (
                 evaporation_rate * surface_area) > 0:
@@ -189,7 +190,7 @@ def lake_george_simple_model(data, evaporation_rate):
 
 
 def lake_george_complex_model(data):
-    catchment_area = largest_area(data)
+    catchment_area = 950000000 * 0.16
     surface_area = largest_area(data)
     volume = [line[1] for line in data]
     solar_exposure = [line[3] for line in data]
@@ -236,6 +237,6 @@ print(largest_area(data))
 #print(most_average_rainfall(data))
 #print(hottest_month(data))
 #area_vs_volume(data)
-#plot_volumes(lake_george_simple_model(data, 55))
+plot_volumes(lake_george_simple_model(data, 60))
 
 #print(evaluate_model(data, lake_george_complex_model(data)))
